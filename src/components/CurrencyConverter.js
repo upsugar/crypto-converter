@@ -13,7 +13,7 @@ function CurrencyConverter() {
     console.log(amount)
 
     const convert = () => {
-        
+
         var options = {
           method: 'GET',
           url: 'https://alpha-vantage.p.rapidapi.com/query',
@@ -23,28 +23,28 @@ function CurrencyConverter() {
             'x-rapidapi-key': '4e888dc983msh6087ca5f322894fp1067e6jsn02742bbc31bd'
           }
         }
-        
+
         axios.request(options).then((response) => {
             console.log(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'])
             setExchangeRate(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'])
             setResult(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'] * amount)
         }).catch((error) => {
             console.error(error)
-        }) 
+        })
     }
-    
+
     console.log(exchangeRate)
-    
+
     return (
       <div className="currency-converter">
           <h2>Currency Converter</h2>
-            
+
         <div className="input-box">
 
             <table>
                 <tbody>
                     <tr>
-                        <td>Primary Currency:</td>
+                        <td>From </td>
                         <td>
                             <input
                             type="number"
@@ -66,7 +66,7 @@ function CurrencyConverter() {
                         </td>
                     </tr>
                     <tr>
-                        <td>Target Currency:</td>
+                        <td>To </td>
                         <td>
                             <input
                             name="currency-amount-2"
@@ -80,8 +80,8 @@ function CurrencyConverter() {
                                 name="currency-option-2"
                                 className="currency-options"
                                 onChange={(e) => setChosenTargetCurrency(e.target.value)}
-                            > 
-                                
+                            >
+
                             {currencies.map((currency, _index) => (<option key={_index}>{currency}</option>))}
                             </select>
                         </td>
@@ -89,8 +89,8 @@ function CurrencyConverter() {
                 </tbody>
             </table>
 
-            <button id="convert-button" onClick={convert}>Convert</button>
-            
+            <button className="convert-button" id="convert-button" onClick={convert}>Convert</button>
+
 
 
         </div>
@@ -104,5 +104,5 @@ function CurrencyConverter() {
       </div>
     )
   }
-  
-  export default CurrencyConverter 
+
+  export default CurrencyConverter
